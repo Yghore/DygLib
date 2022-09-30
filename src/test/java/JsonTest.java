@@ -13,7 +13,9 @@ public class JsonTest
     @Test
     public void test_json_save() throws FileNotFoundException {
         Json j = new Json(JsonFile.class, "test.json");
-        JsonFile test = new JsonFile(12, "Je suis une description", "Je suis un titre", true, "Attribut");
+        JsonFilesSub t = new JsonFilesSub();
+        JsonFile test = new JsonFile(12, "Je suis une description", "Je suis un titre", true, t);
+        System.out.println(test);
         j.save(test);
     }
 

@@ -2,8 +2,7 @@ package fr.yghore.dyglib.Data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.json.JSONObject;
-import org.json.JSONTokener;
+
 
 import java.io.*;
 
@@ -23,11 +22,11 @@ public class Json
         File file = new File(path);
         try {
             if(!file.exists()){file.createNewFile();}
-            JSONObject jo = new JSONObject(ob);
-
-                FileWriter fileWriter = new FileWriter(file);
-                fileWriter.write(jo.toString());
-                fileWriter.flush();
+            Gson gson = new GsonBuilder().create();
+            String jsonText = gson.toJson(ob);
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(jsonText);
+            fileWriter.flush();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -35,9 +34,8 @@ public class Json
     }
 
     public Salvageable load() throws FileNotFoundException {
-        JSONObject jo = new JSONObject(new JSONTokener(new FileReader(this.path)));
         Gson gson = new GsonBuilder().create();
-        return (Salvageable) gson.fromJson(jo.toString(), this.className);
+        return gson.fromJson(new FileReader(this.path), this.className);
     }
 
 

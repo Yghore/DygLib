@@ -8,15 +8,8 @@ public class JsonFile extends Salvageable
     private String title;
     private boolean afficher;
 
-    private String nouvelleAttribut;
 
-    public String getNouvelleAttribut() {
-        return nouvelleAttribut;
-    }
-
-    public void setNouvelleAttribut(String nouvelleAttribut) {
-        this.nouvelleAttribut = nouvelleAttribut;
-    }
+    public JsonFilesSub sub;
 
     public int getJour() {
         return jour;
@@ -50,12 +43,12 @@ public class JsonFile extends Salvageable
         this.afficher = afficher;
     }
 
-    public JsonFile(int jour, String desc, String title, boolean afficher, String nouvelleAttribut) {
+    public JsonFile(int jour, String desc, String title, boolean afficher, JsonFilesSub sub) {
         this.jour = jour;
         this.desc = desc;
         this.title = title;
         this.afficher = afficher;
-        this.nouvelleAttribut = nouvelleAttribut;
+        this.sub = sub;
     }
 
     @Override
@@ -65,7 +58,9 @@ public class JsonFile extends Salvageable
                 ", desc='" + desc + '\'' +
                 ", title='" + title + '\'' +
                 ", afficher=" + afficher +
-                ", nouvelleAttribut='" + nouvelleAttribut + '\'' +
+                ", sub=" + sub +
                 '}';
     }
+
+
 }
