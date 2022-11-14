@@ -1,6 +1,6 @@
 import fr.yghore.dyglib.Configuration.Configurable;
 
-public class ConfigTest extends Configurable
+public class ConfigTest implements Configurable
 {
 
     public int val;

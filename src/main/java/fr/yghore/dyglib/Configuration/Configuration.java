@@ -6,6 +6,9 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.*;
 
+/**
+ * Classe pour la gestion de la configuration
+ */
 public class Configuration
 {
 
@@ -14,16 +17,13 @@ public class Configuration
 
     private static Configurable config;
 
-    private static String nameLogger;
-
     public Configuration(String fileName, boolean defaultConfig, String logger)
     {
         new Logger(logger);
-        Configuration.nameLogger = nameLogger;
         this.fileConfig = new File(fileName);
         if(!fileConfig.exists())
         {
-            Logger.getLogger().sendPrint(new String[]{"Le fichier n'existe pas !", "Création du fichier en cours..."});
+            Logger.getLogger().sendInfo(new String[]{"Le fichier n'existe pas !", "Création du fichier en cours..."});
 
             try {
                 fileConfig.createNewFile();
@@ -51,6 +51,13 @@ public class Configuration
 
     }
 
+    /**
+     * Permet de charger un fichier de configuration (la classe donnée pour le chargement doit forcémenent implémenter la classe Configurable
+     * @see Configurable
+     * @param c La classe qui fait office de structure pour le fichier
+     * @return Une instance de la classe passé en paramètre avec les attributs définis
+     * @throws ConfigurationException Si le fichier est mal formée par rapport à la classe
+     */
     public Configurable loadConfig(Class<? extends Configurable> c) throws ConfigurationException
     {
         try {
@@ -72,6 +79,11 @@ public class Configuration
         return null;
     }
 
+    /**
+     *
+     * @return Retourne l'objet instancié si l'objet n'a pas été récupéré lors du chargement
+     * @throws ConfigurationException
+     */
     public static Configurable getConfig() throws ConfigurationException {
         if(Configuration.config == null)
         {

@@ -1,5 +1,8 @@
 package fr.yghore.dyglib;
 
+/**
+ * Logger qui doit être définir dans le Configuration
+ */
 public class Logger {
 
 
@@ -31,12 +34,20 @@ public class Logger {
         Logger.logger = logger;
     }
 
+    /**
+     * Permet de construire un logger avec un préfix
+     * @param prefix
+     */
     public Logger(String prefix)
     {
         this.prefix = prefix;
         Logger.setLogger(this);
     }
 
+    /**
+     * Permet de récupèrer le logger
+     * @return le Logger
+     */
     public static Logger getLogger()
     {
         if(Logger.logger == null){return new Logger("DygLib");}
@@ -44,13 +55,22 @@ public class Logger {
     }
 
 
-    public void sendPrint(String[] messages)
+    /**
+     * Permet l'envoie de plusieurs informations dans la console
+     * @param messages - Liste de message
+     */
+    public void sendInfo(String[] messages)
     {
         for (String message : messages) {
-            this.sendPrint(message);
+            this.sendInfo(message);
         }
     }
-    public void sendPrint(String message)
+
+    /**
+     * Envoie d'une information dans la console
+     * @param message Le message à afficher
+     */
+    public void sendInfo(String message)
     {
         String sb = GREEN +
                 "[" +

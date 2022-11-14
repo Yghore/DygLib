@@ -17,7 +17,7 @@ public class LoggerTest {
     @Test
     public void test_Print()
     {
-        Logger.getLogger().sendPrint("Je suis un message de test");
+        Logger.getLogger().sendInfo("Je suis un message de test");
     }
 
     @Test

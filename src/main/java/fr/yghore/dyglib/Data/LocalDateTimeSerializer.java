@@ -6,6 +6,9 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Permet la sérialisation de LocalDateTime
+ */
 public class LocalDateTimeSerializer implements JsonSerializer<LocalDateTime> {
 
     @Override

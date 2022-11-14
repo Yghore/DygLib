@@ -17,6 +17,7 @@ public class Json
             .create();
     private transient String path;
 
+
     public Json(String path) {
         this.path = path;
     }
@@ -24,6 +25,10 @@ public class Json
     public Json(){}
 
 
+    /**
+     * Permet de sauvegarder l'objet dans le fichier défini dans l'attribut path
+     * Pour définir cette attribut, il faut passer par le {@link #Json(String) constructeur} ou la méthode {@link #setPath(String) setPath}
+     */
     public void save(){
         File file = new File(path);
         try {
@@ -40,6 +45,13 @@ public class Json
         }
     }
 
+    /**
+     * Chargement d'un fichier json
+     * @param path Le fichier à charger
+     * @param className La classe qui va être utilisé pour la création de l'objet (qui doit implémenter Salvageable)
+     * @return L'instance de la classe passé en paramètre
+     * @throws FileNotFoundException Permet de définir la chose à faire si le fichier n'existe pas (création d'un constructeur, etc...)
+     */
     public static Json load(String path, Class<? extends Salvageable> className) throws FileNotFoundException {
 
             Json json = (Json) GSON.fromJson(new FileReader(path), className);

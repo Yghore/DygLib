@@ -1,4 +1,4 @@
 package fr.yghore.dyglib.Configuration;
 
-public class Configurable {
+public interface Configurable {
 }

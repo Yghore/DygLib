@@ -9,6 +9,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+/**
+ * Permet la désérialisation de LocalDateTime
+ */
 public class LocalDateTimeDeserializer implements JsonDeserializer <LocalDateTime> {
     @Override
     public LocalDateTime deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
