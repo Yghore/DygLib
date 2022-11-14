@@ -1,6 +1,6 @@
 import fr.yghore.dyglib.Data.Salvageable;
 
-public class JsonFilesSub extends Salvageable
+public class JsonFilesSub implements Salvageable
 {
 
     private int test;

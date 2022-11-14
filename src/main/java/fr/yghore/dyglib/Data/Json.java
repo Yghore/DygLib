@@ -5,25 +5,32 @@ import com.google.gson.GsonBuilder;
 
 
 import java.io.*;
+import java.time.LocalDateTime;
 
 public class Json
 {
 
+    private final static Gson GSON = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer())
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer())
+            .setPrettyPrinting()
+            .create();
+    private transient String path;
 
-    private Class<? extends Salvageable> className;
-    private String path;
-
-    public Json(Class<? extends Salvageable> className, String path) {
-        this.className = className;
+    public Json(String path) {
         this.path = path;
     }
 
-    public void save(Salvageable ob){
+    public Json(){}
+
+
+    public void save(){
         File file = new File(path);
         try {
             if(!file.exists()){file.createNewFile();}
-            Gson gson = new GsonBuilder().create();
-            String jsonText = gson.toJson(ob);
+
+
+            String jsonText = GSON.toJson(this);
             FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(jsonText);
             fileWriter.flush();
@@ -33,9 +40,20 @@ public class Json
         }
     }
 
-    public Salvageable load() throws FileNotFoundException {
-        Gson gson = new GsonBuilder().create();
-        return gson.fromJson(new FileReader(this.path), this.className);
+    public static Json load(String path, Class<? extends Salvageable> className) throws FileNotFoundException {
+
+            Json json = (Json) GSON.fromJson(new FileReader(path), className);
+            json.path = path;
+            return json;
+
+
+
+    }
+
+    public Json setPath(String path)
+    {
+        this.path = path;
+        return this;
     }
 
 

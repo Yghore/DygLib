@@ -1,6 +1,7 @@
+import fr.yghore.dyglib.Data.Json;
 import fr.yghore.dyglib.Data.Salvageable;
 
-public class JsonFile extends Salvageable
+public class JsonFile extends Json implements Salvageable
 {
 
     private int jour;
@@ -43,7 +44,8 @@ public class JsonFile extends Salvageable
         this.afficher = afficher;
     }
 
-    public JsonFile(int jour, String desc, String title, boolean afficher, JsonFilesSub sub) {
+    public JsonFile(int jour, String desc, String title, boolean afficher, JsonFilesSub sub)
+    {
         this.jour = jour;
         this.desc = desc;
         this.title = title;
